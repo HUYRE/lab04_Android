@@ -1,18 +1,7 @@
 package com.example.lab4_anais
-
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.lab4_anais.ui.theme.Lab4_AnaisTheme
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -23,6 +12,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.* // Para Scaffold, FloatingActionButton, AlertDialog, etc.
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -42,7 +32,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MyApp() {
     Scaffold(
-        topBar = { TopAppBar(title = { Text("My Enhanced App") }) },
+        topBar = { TopAppBar(title = { Text("Lab 04 AnaisA") }) },
         floatingActionButton = {
             FloatingActionButton(onClick = { /* Acción al hacer clic */ }) {
                 Text("+")
@@ -64,11 +54,6 @@ fun MyApp() {
             }
         }
     )
-}
-
-@Composable
-fun ShowAlertDialog() {
-    TODO("Not yet implemented")
 }
 
 @Composable
@@ -156,4 +141,39 @@ fun GridExample() {
     }
 }
 
+@Composable
+fun ShowAlertDialog() {
+    var showDialog by remember { mutableStateOf(false) }
 
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Alerta") },
+            text = { Text("Este es un mensaje de alerta con funcionalidad.") },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showDialog = false
+                        // Acción adicional al cerrar el diálogo
+                    }
+                ) {
+                    Text("Aceptar")
+                }
+            },
+            dismissButton = {
+                Button(onClick = { showDialog = false }) {
+                    Text("Cancelar")
+                }
+            }
+        )
+    }
+
+    Button(
+        onClick = { showDialog = true },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Text("Mostrar Alerta")
+    }
+}
