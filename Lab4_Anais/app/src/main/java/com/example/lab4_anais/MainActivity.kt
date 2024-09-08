@@ -37,8 +37,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MyApp() {
     Scaffold(
@@ -68,11 +68,6 @@ fun MyApp() {
 
 @Composable
 fun ShowAlertDialog() {
-    TODO("Not yet implemented")
-}
-
-@Composable
-fun GridExample() {
     TODO("Not yet implemented")
 }
 
@@ -122,6 +117,41 @@ fun LazyRowExample() {
                     .clickable { /* Acción al hacer clic */ }
             )
             Spacer(modifier = Modifier.width(8.dp))
+        }
+    }
+}
+
+@Composable
+fun GridExample() {
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .fillMaxWidth()
+            .background(Color.Yellow, RoundedCornerShape(8.dp))
+            .padding(8.dp)
+    ) {
+        for (i in 0..1) { // Número de filas
+            Row(
+                horizontalArrangement = Arrangement.SpaceAround,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                for (j in 0..2) { // Número de columnas
+                    Box(
+                        modifier = Modifier
+                            .size(60.dp)
+                            .background(Color.Red, RoundedCornerShape(8.dp))
+                            .clickable { /* Acción al hacer clic */ },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = "Item ${i * 3 + j}",
+                            color = Color.White,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            }
+            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }
