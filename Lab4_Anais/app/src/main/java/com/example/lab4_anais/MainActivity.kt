@@ -177,3 +177,40 @@ fun ShowAlertDialog() {
         Text("Mostrar Alerta")
     }
 }
+@Composable
+fun ShowAlertDialog() {
+    var showDialog by remember { mutableStateOf(false) }
+
+    if (showDialog) {
+        AlertDialog(
+            onDismissRequest = { showDialog = false },
+            title = { Text("Alerta") },
+            text = { Text("Este es un mensaje de alerta con funcionalidad.") },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showDialog = false
+                        // Acción adicional al cerrar el diálogo
+                    }
+                ) {
+                    Text("Aceptar")
+                }
+            },
+            dismissButton = {
+                Button(onClick = { showDialog = false }) {
+                    Text("Cancelar")
+                }
+            }
+        )
+    }
+
+    Button(
+        onClick = { showDialog = true },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Text("Mostrar Alerta")
+    }
+}
+
